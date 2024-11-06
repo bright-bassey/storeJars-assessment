@@ -5,6 +5,11 @@ node_modules
 /cache
 /artifacts
 
+
+# Build outputs
+/dist
+/build
+
 # TypeChain files
 /typechain
 /typechain-types

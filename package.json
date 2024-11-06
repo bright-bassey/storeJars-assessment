@@ -29,9 +29,11 @@
     "@types/mocha": "^10.0.9",
     "@types/node": "^22.9.0",
     "chai": "4.2.0",
+    "copyfiles": "^2.4.1",
     "hardhat": "^2.22.15",
     "hardhat-gas-reporter": "1.0.8",
     "nodemon": "^3.1.7",
+    "rimraf": "^6.0.1",
     "solidity-coverage": "0.8.1",
     "ts-node": "^10.9.2",
     "typechain": "8.3.0",
@@ -40,9 +42,9 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "npx hardhat compile && tsc",
-    "dev": "nodemon src/server.ts",
-    "prebuild": "rm -rf dist",
-    "postbuild": "cp -r src/graphql/schema dist/graphql/",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "prebuild": "rimraf dist",
+    "postbuild": "copyfiles -u 1 src/graphql/schema/**/* dist/graphql/",
     "vercel-build": "yarn build"
   }
 }

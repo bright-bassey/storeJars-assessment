@@ -23,16 +23,13 @@ Before you begin, ensure you have:
 ## 🛠 Installation
 
 1. **Clone the repository**
-mkdir storeJars-assessment
-cd storeJars-assessment
-git clone https://github.com/bright-bassey/storeJars-assessment.git
 
-<!-- Initialize Hardhat Project -->
-npx hardhat init
+git clone https://github.com/bright-bassey/storeJars-assessment.git
 
 
 
 2. **Install dependencies**
+cd storeJars-assessment
 
 npx yarn 
 
@@ -43,7 +40,6 @@ Create a `.env` file in the root directory:
 
 ETHEREUM_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your-api-key
 PRIVATE_KEY=your_metamask_private_key_without_0x
-CONTRACT_ADDRESS=your_deployed_contract_address
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
 
 PORT=4000

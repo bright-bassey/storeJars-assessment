@@ -26,24 +26,20 @@ Before you begin, ensure you have:
 
 git clone https://github.com/bright-bassey/storeJars-assessment.git
 
-
-
 2. **Install dependencies**
-cd storeJars-assessment
+   cd storeJars-assessment
 
-npx yarn 
-
+npx yarn
 
 3. **Environment Setup**
 
 Create a `.env` file in the root directory:
 
-ETHEREUM_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your-api-key
+ETHEREUM_RPC_URL=https://sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161
 PRIVATE_KEY=your_metamask_private_key_without_0x
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
 
 PORT=4000
-
 
 ## 🔥 Smart Contract Deployment
 
@@ -51,27 +47,25 @@ PORT=4000
 
 npx hardhat compile
 
-
 2. **Deploy to Sepolia testnet**
 
 npx hardhat run scripts/deploy.ts --network sepolia
 
-
 3. **Save the deployed contract address**
+
 - Copy the contract address from the deployment output
 - Add it to your `.env` file as `CONTRACT_ADDRESS`
 
 ## 🏃‍♂️ Running the Application
 
 1. **Start the server**
-npx yarn dev
-
+   npx yarn dev
 
 2. **Access GraphQL Playground**
+
 - Open `http://localhost:4000/graphql` in your browser
 
 ## 🧪 Testing the API
-
 
 ### Web3 Operations (Smart Contract Interaction)
 
@@ -90,7 +84,6 @@ setStorageValue(value: "42") {
 value
 }
 }
-
 
 ### Web2 Operations (MongoDB)
 
@@ -117,15 +110,42 @@ address
 }
 }
 
+## Testing the API
+
+**Create User**
+curl --request POST \
+ --header 'content-type: application/json' \
+ --url 'https://storejars-assessment-2.onrender.com/' \
+ --data '{"query":"mutation { createUser(address: \"0x123456789abcdef\", username: \"testUser\") { id username address } }"}'
+
+**Query Users**
+curl --request POST \
+ --header 'content-type: application/json' \
+ --url 'https://storejars-assessment-2.onrender.com/' \
+ --data '{"query":"query { users { id username address } }"}'
+
+**Query Stored Value**
+curl --request POST \
+ --header 'content-type: application/json' \
+ --url 'https://storejars-assessment-2.onrender.com/' \
+ --data '{"query":"query { getStorageValue { value } }"}'
+
+**Set New Value**
+curl --request POST \
+ --header 'content-type: application/json' \
+ --url 'https://storejars-assessment-2.onrender.com/' \
+ --data '{"query":"mutation { setStorageValue(value: \"42\") { value } }"}'
 
 ## ⚠️ Important Setup Steps
 
 1. **Getting Sepolia ETH**
+
    - Visit [Sepolia Faucet](https://sepoliafaucet.com)
    - Connect your MetaMask
    - Request test ETH (required for contract deployment)
 
 2. **MongoDB Setup**
+
    - Create a cluster in [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
    - Get your connection string
    - Add it to `.env` as `MONGODB_URI`
@@ -146,4 +166,5 @@ address
 - Validate all inputs
 
 ## 🧪 Running Tests
+
 npx hardhat test

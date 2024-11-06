@@ -47,7 +47,7 @@
     "start": "node dist/server.js",
     "build": " tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "prebuild": "rimraf dist && npx yarn && npx hardhat compile ",
+    "prebuild": " npx yarn  &&  rimraf dist && npx hardhat compile ",
     "postbuild": "copyfiles -u 1 src/graphql/schema/**/* dist/graphql/",
     "vercel-build": "yarn build"
   }

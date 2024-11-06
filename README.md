@@ -35,7 +35,7 @@ npx yarn
 
 Create a `.env` file in the root directory:
 
-ETHEREUM_RPC_URL=https://sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161
+ETHEREUM_RPC_URL=https://sepolia.infura.io/v3/Your_Infura_API_Key
 PRIVATE_KEY=your_metamask_private_key_without_0x
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
 

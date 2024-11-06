@@ -23,6 +23,7 @@ async function startServer() {
   app.use(cors());
   app.use(express.json());
   app.use('/graphql', expressMiddleware(server));
+  app.use('/', expressMiddleware(server));
 
   try {
     await mongoose.connect(process.env.MONGODB_URI!);

@@ -40,6 +40,9 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "npx hardhat compile && tsc",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "prebuild": "rm -rf dist",
+    "postbuild": "cp -r src/graphql/schema dist/graphql/",
+    "vercel-build": "yarn build"
   }
 }

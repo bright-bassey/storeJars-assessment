@@ -45,6 +45,7 @@ ETHEREUM_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your-api-key
 PRIVATE_KEY=your_metamask_private_key_without_0x
 CONTRACT_ADDRESS=your_deployed_contract_address
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dbname
+
 PORT=4000
 
 

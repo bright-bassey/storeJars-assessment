@@ -1,5 +1,5 @@
 import { getContract } from "../../web3";
-import { SimpleStorage__factory } from "../../../typechain-types/factories/SimpleStorage__factory";
+import { SimpleStorage__factory } from "../../typechain-types/factories/SimpleStorage__factory";
 
 export const web3Resolvers = {
     Query: {

@@ -1,16 +1,15 @@
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { SimpleStorage } from "../src/typechain-types";
 
 describe("SimpleStorage", function () {
-  //this is the  Fixture to deploy the contract
   async function deploySimpleStorageFixture() {
-    // this is for Getting the signers (accounts)
     const [owner, otherAccount] = await ethers.getSigners();
-
-    // this is for deploying the contract
-    const SimpleStorage = await ethers.getContractFactory("SimpleStorage");
-    const simpleStorage = await SimpleStorage.deploy();
+    
+    const SimpleStorageFactory = await ethers.getContractFactory("SimpleStorage");
+    const simpleStorage = (await SimpleStorageFactory.deploy()) as unknown as SimpleStorage;
+    await simpleStorage.waitForDeployment();
 
     return { simpleStorage, owner, otherAccount };
   }
@@ -26,7 +25,6 @@ describe("SimpleStorage", function () {
     it("Should set and get the correct value", async function () {
       const { simpleStorage } = await loadFixture(deploySimpleStorageFixture);
       
-      // this sets the  value to 42
       await simpleStorage.setValue(42);
       expect(await simpleStorage.getValue()).to.equal(42);
     });
@@ -44,7 +42,6 @@ describe("SimpleStorage", function () {
         deploySimpleStorageFixture
       );
 
-      // this connects with other account and set value
       await simpleStorage.connect(otherAccount).setValue(100);
       expect(await simpleStorage.getValue()).to.equal(100);
     });
